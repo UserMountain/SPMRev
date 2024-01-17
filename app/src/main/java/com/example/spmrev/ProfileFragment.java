@@ -68,6 +68,17 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        Button buttonEditProfile = view.findViewById(R.id.button_EditAcc);
+
+        buttonEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open EditProfileActivity when the "Edit Profile" button is clicked
+                Intent intent = new Intent(getActivity(), Edit_ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Fetch and display user data from the Realtime Database
         fetchUserData();
 
