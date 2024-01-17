@@ -2,59 +2,46 @@ package com.example.spmrev;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private TextView viewUserName;
+    private TextView viewID;
+    private TextView viewPassword;
+    private TextView viewEmail;
+    private TextView viewNumber;
+
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+
+        // You can add more initialization code here if needed
     }
 
     @Override
@@ -63,7 +50,11 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        // Find the button for logout
+        viewUserName = view.findViewById(R.id.ViewUsername);
+        viewID = view.findViewById(R.id.ViewId);
+        viewPassword = view.findViewById(R.id.ViewPassword);
+        viewEmail = view.findViewById(R.id.ViewEmail);
+        viewNumber = view.findViewById(R.id.ViewNumber);
         Button buttonLogout = view.findViewById(R.id.button_Logout);
 
         // Set OnClickListener for the logout button
@@ -77,6 +68,47 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        // Fetch and display user data from the Realtime Database
+        fetchUserData();
+
         return view;
+    }
+
+    private void fetchUserData() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+
+            // Reference to the user's node in the Realtime Database
+            DatabaseReference userRef = mDatabase.child(userId);
+
+            // Read data from the user's node
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Retrieve user data
+                        String userName = dataSnapshot.child("username").getValue(String.class);
+                        String userID = dataSnapshot.child("idNumber").getValue(String.class);
+                        String userPassword = dataSnapshot.child("password").getValue(String.class);
+                        String userEmail = dataSnapshot.child("email").getValue(String.class);
+                        String userNumber = dataSnapshot.child("phone").getValue(String.class);
+
+                        // Update UI with user data
+                        viewUserName.setText(userName);
+                        viewID.setText(userID);
+                        viewPassword.setText(userPassword);
+                        viewEmail.setText(userEmail);
+                        viewNumber.setText(userNumber);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Handle errors here
+                }
+            });
+        }
     }
 }

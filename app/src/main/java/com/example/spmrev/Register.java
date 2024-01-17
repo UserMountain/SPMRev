@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    private EditText emailUser, idNumberUser, passwordUser, phoneUser;
+    private EditText usernameUser, emailUser, idNumberUser, passwordUser, phoneUser;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
@@ -31,6 +31,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        usernameUser = findViewById(R.id.reg_username);
         emailUser = findViewById(R.id.reg_email);
         idNumberUser = findViewById(R.id.reg_id);
         passwordUser = findViewById(R.id.reg_password);
@@ -51,6 +52,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void registerUser() {
+        String username = usernameUser.getText().toString().trim();
         String email = emailUser.getText().toString().trim();
         String idNumber = idNumberUser.getText().toString().trim();
         String password = passwordUser.getText().toString().trim();
@@ -69,7 +71,7 @@ public class Register extends AppCompatActivity {
                         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
                         if (currentUser != null) {
                             // Save user information to Realtime Database
-                            saveUserInfoToDatabase(currentUser.getUid(), email, idNumber, phone);
+                            saveUserInfoToDatabase(currentUser.getUid(), username, email, idNumber, password, phone);
                         }
                     } else {
                         // Registration failed
@@ -84,11 +86,13 @@ public class Register extends AppCompatActivity {
                 });
     }
 
-    private void saveUserInfoToDatabase(String userId, String email, String idNumber, String phone) {
+    private void saveUserInfoToDatabase(String userId, String username, String email, String idNumber, String password, String phone) {
         // Create a user map to store user information
         Map<String, Object> userMap = new HashMap<>();
+        userMap.put("username", username);
         userMap.put("email", email);
         userMap.put("idNumber", idNumber);
+        userMap.put("password", password);
         userMap.put("phone", phone);
 
         // Save the user information to Realtime Database
