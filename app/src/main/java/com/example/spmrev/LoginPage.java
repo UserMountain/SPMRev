@@ -1,5 +1,6 @@
 package com.example.spmrev;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +11,14 @@ import android.widget.Toast;
 
 import com.example.spmrev.MainActivity;
 import com.example.spmrev.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPage extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     private EditText username, password;
 
     @Override
@@ -20,34 +26,48 @@ public class LoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
+        mAuth = FirebaseAuth.getInstance();
+
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         Button button_Login = findViewById(R.id.button_Login);
         Button button_register = findViewById(R.id.button_register);
 
         button_Login.setOnClickListener(v -> {
-            String enteredUsername = username.getText().toString().trim();
-            String enteredPassword = password.getText().toString().trim();
+            String enteredUsername = username.getText().toString();
+            String enteredPassword = password.getText().toString();
             signIn(enteredUsername, enteredPassword);
         });
+
         button_register.setOnClickListener(v -> {
-            // Start the Register activity when the Register button is clicked
-            Intent intent = new Intent(LoginPage.this, Register.class);
-            startActivity(intent);
+            // Navigate to the RegisterActivity
+            startActivity(new Intent(LoginPage.this, Register.class));
         });
+
     }
 
     private void signIn(String enteredUsername, String enteredPassword) {
-        // Check if the entered username and password are valid
-        if (enteredUsername.equals("mamu") && enteredPassword.equals("ain")) {
-            // Credentials are valid, navigate to the MainActivity which holds the HomeFragment
-            Intent intent = new Intent(LoginPage.this, MainActivity.class);
-            startActivity(intent);
-            finish(); // Finish the login activity to prevent going back on pressing back button
-        } else {
-            // Show an error message if credentials are invalid
-            Toast.makeText(LoginPage.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-        }
+        mAuth.signInWithEmailAndPassword(enteredUsername,enteredPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    // Sign in success
+                    Toast.makeText(LoginPage.this, "Authentication succeeded.", Toast.LENGTH_SHORT).show();
+                    openSignInSuccessActivity(enteredUsername);
+                    // Navigate to the next activity or perform other tasks
+                } else { // If sign in fails, display a message to the user.
+                    Toast.makeText(LoginPage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    private void openSignInSuccessActivity(String enteredUsername) {
+
+        Intent intentRegSuccess = new Intent(LoginPage.this, MainActivity.class);
+        intentRegSuccess.putExtra("email", enteredUsername);
+        startActivity(intentRegSuccess);
+
     }
 
 }
