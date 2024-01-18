@@ -1,10 +1,14 @@
 package com.example.spmrev;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +27,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class DetailActivity extends AppCompatActivity {
 
     TextView detailQuestion;
-    TextView opt1, opt2, opt3, opt4, answer;
+    TextView answer;
+    RadioGroup radioGroup;
+    RadioButton opt1, opt2, opt3, opt4;
 
     FloatingActionButton deleteButton, editButton;
 
@@ -34,6 +40,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         detailQuestion = findViewById(R.id.question);
+        radioGroup = findViewById(R.id.radioGroup);
+
         opt1 = findViewById(R.id.ansA);
         opt2 = findViewById(R.id.ansB);
         opt3 = findViewById(R.id.ansC);
@@ -62,6 +70,9 @@ public class DetailActivity extends AppCompatActivity {
                     opt3.setText(theOption3);
                     opt4.setText(theOption4);
                     answer.setText(theAnswer);
+
+                    preselectCorrectAnswer(theAnswer);
+
                 } else {
                     // Handle the case where the data doesn't exist
                 }
@@ -73,7 +84,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        editButton = findViewById(R.id.fabDelete);
+        editButton = findViewById(R.id.fabEdit);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,5 +95,60 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        deleteButton = findViewById(R.id.fabDelete);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Prompt user for confirmation before deleting
+                showDeleteConfirmationDialog();
+            }
+        });
+
     }
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to delete this question?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User confirmed, delete the question
+                        deleteQuestion();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog, do nothing
+                        dialog.dismiss();
+                    }
+                });
+        builder.create().show();
+    }
+
+    private void deleteQuestion() {
+        // Remove the question from Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
+        String questionKey = getIntent().getStringExtra("qid");
+        databaseReference.child(questionKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Display a success message or navigate back to the previous activity
+                Toast.makeText(DetailActivity.this, "Question deleted successfully", Toast.LENGTH_SHORT).show();
+                finish(); // Finish the DetailActivity
+            }
+        });
+    }
+
+    private void preselectCorrectAnswer(String correctAnswer) {
+        // Preselect the correct answer RadioButton
+        if (correctAnswer.equals(opt1.getText().toString())) {
+            opt1.setChecked(true);
+        } else if (correctAnswer.equals(opt2.getText().toString())) {
+            opt2.setChecked(true);
+        } else if (correctAnswer.equals(opt3.getText().toString())) {
+            opt3.setChecked(true);
+        } else if (correctAnswer.equals(opt4.getText().toString())) {
+            opt4.setChecked(true);
+        }
+    }
+
 }

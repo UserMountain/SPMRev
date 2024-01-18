@@ -38,41 +38,39 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-
-        <TextView
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ansA"
-            android:layout_margin="5dp"
-            android:text="Answer A: Your Text Here"
-            android:textColor="@color/black"/>
+            android:layout_below="@id/questionText"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ansB"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
-            android:hint="Enter Answer B"
-            android:textColor="@color/black"/>
+            <RadioButton
+                android:id="@+id/ansA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option C" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ansC"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
-            android:hint="Enter Answer C"
-            android:textColor="@color/black"/>
+            <RadioButton
+                android:id="@+id/ansB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option C" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ansD"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
-            android:hint="Enter Answer D"
-            android:textColor="@color/black"/>
+            <RadioButton
+                android:id="@+id/ansC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option C" />
+
+            <RadioButton
+                android:id="@+id/ansD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option C" />
+
+        </RadioGroup>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -91,7 +89,7 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabEdit"
+            android:id="@+id/fabDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -100,10 +98,10 @@
             android:layout_marginBottom="20dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabDelete"
+            android:id="@+id/fabEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/fabEdit"
+            android:layout_above="@id/fabDelete"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp" />
 

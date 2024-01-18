@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:backgroundTint="@color/white"
-                android:hint="Enter Answer D"
+                android:hint="Enter Correct Answer"
                 android:textColor="@color/black"
                 tools:ignore="TouchTargetSizeCheck" />
 
