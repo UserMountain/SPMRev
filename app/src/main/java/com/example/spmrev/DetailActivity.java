@@ -73,5 +73,16 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        editButton = findViewById(R.id.fabDelete);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open EditQuestionActivity for editing the question
+                Intent intent = new Intent(DetailActivity.this, EditQuestionActivity.class);
+                intent.putExtra("qid", getIntent().getStringExtra("qid"));
+                startActivity(intent);
+            }
+        });
+
     }
 }

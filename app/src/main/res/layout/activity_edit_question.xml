@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailTitle"
+        android:text="Title"
+        android:layout_marginTop="14dp"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editQuestion"
+        android:textStyle="bold"
+        android:text="This will be the question"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textAlignment="center"
+        android:layout_margin="20dp"
+        android:layout_above="@id/choices_layout"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choices_layout"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editAnsA"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:text="Edit Answer A"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editAnsB"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:hint="Edit Answer B"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editAnsC"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:hint="Edit Answer C"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editAnsD"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:hint="Edit Answer D"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editAnswer"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/white"
+            android:hint="Edit Right Answer"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_EditQuestion"
+        android:layout_width="172dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="119dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="120dp"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAnswer" />
+
+</LinearLayout>
