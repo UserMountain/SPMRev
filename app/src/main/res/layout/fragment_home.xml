@@ -76,7 +76,7 @@
                     android:src="@drawable/pressure_icon" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/text_chapter2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView4"
@@ -116,7 +116,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/text_3"
+                    android:id="@+id/text_chapter3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/image_3"
@@ -157,7 +157,7 @@
                     android:src="@drawable/electromagnetic" />
 
                 <TextView
-                    android:id="@+id/text_4"
+                    android:id="@+id/text_chapter4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_4"
@@ -198,7 +198,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/text_5"
+                    android:id="@+id/text_chapter5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_5"
@@ -239,7 +239,7 @@
                     android:src="@drawable/nuclear_physics" />
 
                 <TextView
-                    android:id="@+id/text_6"
+                    android:id="@+id/text_chapter6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_6"

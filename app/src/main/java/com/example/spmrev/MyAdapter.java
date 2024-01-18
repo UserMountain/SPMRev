@@ -18,10 +18,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<QuizData> questionList;
     private Context context;
+    private String selectedChapter;
 
-    public MyAdapter(Context context, List<QuizData> questionList) {
+    public MyAdapter(Context context, List<QuizData> questionList, String selectedChapter) {
         this.context = context;
         this.questionList = questionList;
+        this.selectedChapter = selectedChapter;
     }
 
     @NonNull
@@ -47,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                     // Handle item click here
                     Intent intent = new Intent(context, DetailActivity.class);
                     intent.putExtra("qid", questionList.get(adapterPosition).getQid());
+                    intent.putExtra("selectedChapter", selectedChapter); // Pass the selected chapter
                     // Pass any necessary data to DetailActivity
                     context.startActivity(intent);
                 }

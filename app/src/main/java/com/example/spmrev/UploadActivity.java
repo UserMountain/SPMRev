@@ -1,5 +1,6 @@
 package com.example.spmrev;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,8 +28,11 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload_layout);
 
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+
+
         // Initialize Firebase Database reference
-        databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload").child(selectedChapter);
 
         QuizData quizData = new QuizData();
 

@@ -30,7 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView answer;
     RadioGroup radioGroup;
     RadioButton opt1, opt2, opt3, opt4;
-
+    private DatabaseReference databaseReference;
     FloatingActionButton deleteButton, editButton;
 
 
@@ -48,10 +48,12 @@ public class DetailActivity extends AppCompatActivity {
         opt4 = findViewById(R.id.ansD);
         answer = findViewById(R.id.answer);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
-        String questionKey = getIntent().getStringExtra("qid");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
 
-        databaseReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+        String questionKey = getIntent().getStringExtra("qid");
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+        chapterReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -91,6 +93,7 @@ public class DetailActivity extends AppCompatActivity {
                 // Open EditQuestionActivity for editing the question
                 Intent intent = new Intent(DetailActivity.this, EditQuestionActivity.class);
                 intent.putExtra("qid", getIntent().getStringExtra("qid"));
+                intent.putExtra("selectedChapter", selectedChapter);
                 startActivity(intent);
             }
         });
@@ -105,7 +108,6 @@ public class DetailActivity extends AppCompatActivity {
         });
 
     }
-
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to delete this question?")
@@ -125,10 +127,14 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void deleteQuestion() {
+
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+
         // Remove the question from Firebase Realtime Database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
         String questionKey = getIntent().getStringExtra("qid");
-        databaseReference.child(questionKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+        chapterReference.child(questionKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 // Display a success message or navigate back to the previous activity

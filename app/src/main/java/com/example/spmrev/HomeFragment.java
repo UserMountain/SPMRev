@@ -64,12 +64,70 @@ public class HomeFragment extends Fragment {
 
         // Find the TextView you want to make clickable
         TextView textChapter1 = view.findViewById(R.id.text_chapter1);
+        TextView textChapter2 = view.findViewById(R.id.text_chapter2);
+        TextView textChapter3 = view.findViewById(R.id.text_chapter3);
+        TextView textChapter4 = view.findViewById(R.id.text_chapter4);
+        TextView textChapter5 = view.findViewById(R.id.text_chapter5);
+        TextView textChapter6 = view.findViewById(R.id.text_chapter6);
 
         // Set a click listener to the TextView
         textChapter1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuestionList.class);
+
+                intent.putExtra("selectedChapter", "Chapter 1");
+
+                startActivity(intent);
+            }
+        });
+
+        textChapter2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity with chapter information
+                Intent intent = new Intent(getActivity(), QuestionList.class);
+                intent.putExtra("selectedChapter", "Chapter 2"); // Replace with your chapter information
+                startActivity(intent);
+            }
+        });
+
+        textChapter3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity with chapter information
+                Intent intent = new Intent(getActivity(), QuestionList.class);
+                intent.putExtra("selectedChapter", "Chapter 3"); // Replace with your chapter information
+                startActivity(intent);
+            }
+        });
+
+        textChapter4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity with chapter information
+                Intent intent = new Intent(getActivity(), QuestionList.class);
+                intent.putExtra("selectedChapter", "Chapter 4"); // Replace with your chapter information
+                startActivity(intent);
+            }
+        });
+
+        textChapter5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity with chapter information
+                Intent intent = new Intent(getActivity(), QuestionList.class);
+                intent.putExtra("selectedChapter", "Chapter 5"); // Replace with your chapter information
+                startActivity(intent);
+            }
+        });
+
+        textChapter6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity with chapter information
+                Intent intent = new Intent(getActivity(), QuestionList.class);
+                intent.putExtra("selectedChapter", "Chapter 6"); // Replace with your chapter information
                 startActivity(intent);
             }
         });

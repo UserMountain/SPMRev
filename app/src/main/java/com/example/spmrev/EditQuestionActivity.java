@@ -50,7 +50,10 @@ public class EditQuestionActivity extends AppCompatActivity {
     }
 
     private void fetchQuestionData(String questionKey) {
-        databaseReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+        chapterReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -91,7 +94,10 @@ public class EditQuestionActivity extends AppCompatActivity {
         String editedAnswer = editAnswer.getText().toString();
 
         // Save edited data to Firebase Realtime Database
-        DatabaseReference questionRef = databaseReference.child(questionKey);
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+        DatabaseReference questionRef = chapterReference.child(questionKey);
+
         questionRef.child("dataQuestion").setValue(editedQuestion);
         questionRef.child("dataOption1").setValue(editedOpt1);
         questionRef.child("dataOption2").setValue(editedOpt2);

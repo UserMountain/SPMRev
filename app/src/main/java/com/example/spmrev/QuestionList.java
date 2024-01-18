@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ public class QuestionList extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapter adapter;
     private List<QuizData> questionList;
+    private String selectedChapter;
 
     private Button addButton;
 
@@ -32,42 +34,55 @@ public class QuestionList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler_quiz1);
 
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+        // Retrieve data from Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload").child(selectedChapter);
+
         recyclerView = findViewById(R.id.recyclerView);
         questionList = new ArrayList<>();
-        adapter = new MyAdapter(this, questionList);
+        adapter = new MyAdapter(this, questionList, selectedChapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        // Retrieve data from Realtime Database
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                questionList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    QuizData question = snapshot.getValue(QuizData.class);
-                    if (question != null) {
-                        questionList.add(question);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error
-            }
-        });
+        retrieveQuestions(selectedChapter);
 
         addButton = findViewById(R.id.addQuestionButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity
-                startActivity(new Intent(QuestionList.this, UploadActivity.class));
+                startActivity(new Intent(QuestionList.this, UploadActivity.class).putExtra("selectedChapter", selectedChapter));
             }
         });
 
+    }
+
+    private void retrieveQuestions(String selectedChapter) {
+        // Assume you have a node in the Realtime Database for each chapter
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
+
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+
+        // Add a ValueEventListener to fetch questions for the selected chapter
+        chapterReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                questionList.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    QuizData questionData = snapshot.getValue(QuizData.class);
+                    questionList.add(questionData);
+                }
+
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+                Toast.makeText(QuestionList.this, "Failed to retrieve questions", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
