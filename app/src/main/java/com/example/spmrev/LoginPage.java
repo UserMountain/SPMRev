@@ -20,6 +20,7 @@ public class LoginPage extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText username, password;
+    private Button forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class LoginPage extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.button_forgotPassword);
+
         Button button_Login = findViewById(R.id.button_Login);
         Button button_register = findViewById(R.id.button_register);
 
@@ -42,6 +45,13 @@ public class LoginPage extends AppCompatActivity {
         button_register.setOnClickListener(v -> {
             // Navigate to the RegisterActivity
             startActivity(new Intent(LoginPage.this, Register.class));
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginPage.this, ForgotPasswordActivity.class));
+            }
         });
 
     }
