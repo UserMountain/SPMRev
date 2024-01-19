@@ -1,7 +1,7 @@
 package com.example.spmrev;
 
 public class Users {
-    String firstName, lastName, age, userName,old;
+    String firstName, lastName, age, userName;
     public Users() {
     }
     public Users(String firstName, String lastName, String age, String userName) {
@@ -26,9 +26,6 @@ public class Users {
         return age;
     }
 
-    public String getOld() {
-        return old;
-    }
     public void setAge(String age) {
         this.age = age;
     }
