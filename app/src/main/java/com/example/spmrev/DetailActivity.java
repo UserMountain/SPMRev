@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,14 +25,23 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     TextView detailQuestion;
+    private TextView questionNumberTextView;
     TextView answer;
     RadioGroup radioGroup;
     RadioButton opt1, opt2, opt3, opt4;
     private DatabaseReference databaseReference;
     FloatingActionButton deleteButton, editButton;
+    private List<QuizData> questionList;
+    private MyAdapter adapter;
+
+    int totalQuestions;
+    int currentQuestionIndex;
 
 
     @Override
@@ -39,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        questionNumberTextView = findViewById(R.id.questionNumber);
         detailQuestion = findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
 
@@ -52,18 +63,34 @@ public class DetailActivity extends AppCompatActivity {
 
         String selectedChapter = getIntent().getStringExtra("selectedChapter");
         String questionKey = getIntent().getStringExtra("qid");
+
+        adapter = new MyAdapter(this, questionList, selectedChapter);
+
         DatabaseReference chapterReference = databaseReference.child(selectedChapter);
         chapterReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Retrieve data from the snapshot
+
                     String theQuestion = dataSnapshot.child("dataQuestion").getValue(String.class);
                     String theOption1 = dataSnapshot.child("dataOption1").getValue(String.class);
                     String theOption2 = dataSnapshot.child("dataOption2").getValue(String.class);
                     String theOption3 = dataSnapshot.child("dataOption3").getValue(String.class);
                     String theOption4 = dataSnapshot.child("dataOption4").getValue(String.class);
                     String theAnswer = dataSnapshot.child("dataAnswer").getValue(String.class);
+
+                    totalQuestions = (int) dataSnapshot.getChildrenCount(); // Count of all questions
+                    String qidValue = dataSnapshot.child("qid").getValue(String.class);
+
+                    try {
+                        currentQuestionIndex = Integer.parseInt(qidValue);
+                    } catch (NumberFormatException e) {
+                        // Handle the case where the value is not a valid integer
+                        e.printStackTrace(); // Log the exception for debugging
+                        // You may want to set a default value or handle it based on your requirements
+                        currentQuestionIndex = 0; // Set a default value or handle it accordingly
+                    }
 
                     // Update your UI with the retrieved data
                     detailQuestion.setText(theQuestion);
@@ -73,7 +100,10 @@ public class DetailActivity extends AppCompatActivity {
                     opt4.setText(theOption4);
                     answer.setText(theAnswer);
 
+
                     preselectCorrectAnswer(theAnswer);
+
+                    questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + totalQuestions);
 
                 } else {
                     // Handle the case where the data doesn't exist
@@ -156,5 +186,6 @@ public class DetailActivity extends AppCompatActivity {
             opt4.setChecked(true);
         }
     }
+
 
 }
