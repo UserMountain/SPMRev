@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -38,10 +39,8 @@ public class DetailActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     FloatingActionButton deleteButton, editButton;
     private List<QuizData> questionList;
-    private MyAdapter adapter;
-
-    int totalQuestions;
-    int currentQuestionIndex;
+    Button nextButton;
+    int currentQuestionIndex = 0;
 
 
     @Override
@@ -60,37 +59,22 @@ public class DetailActivity extends AppCompatActivity {
         answer = findViewById(R.id.answer);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
-
-        String selectedChapter = getIntent().getStringExtra("selectedChapter");
         String questionKey = getIntent().getStringExtra("qid");
-
-        adapter = new MyAdapter(this, questionList, selectedChapter);
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
 
         DatabaseReference chapterReference = databaseReference.child(selectedChapter);
-        chapterReference.child(questionKey).addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference questionReference = chapterReference.child(questionKey);
+        questionReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // Retrieve data from the snapshot
-
                     String theQuestion = dataSnapshot.child("dataQuestion").getValue(String.class);
                     String theOption1 = dataSnapshot.child("dataOption1").getValue(String.class);
                     String theOption2 = dataSnapshot.child("dataOption2").getValue(String.class);
                     String theOption3 = dataSnapshot.child("dataOption3").getValue(String.class);
                     String theOption4 = dataSnapshot.child("dataOption4").getValue(String.class);
                     String theAnswer = dataSnapshot.child("dataAnswer").getValue(String.class);
-
-                    totalQuestions = (int) dataSnapshot.getChildrenCount(); // Count of all questions
-                    String qidValue = dataSnapshot.child("qid").getValue(String.class);
-
-                    try {
-                        currentQuestionIndex = Integer.parseInt(qidValue);
-                    } catch (NumberFormatException e) {
-                        // Handle the case where the value is not a valid integer
-                        e.printStackTrace(); // Log the exception for debugging
-                        // You may want to set a default value or handle it based on your requirements
-                        currentQuestionIndex = 0; // Set a default value or handle it accordingly
-                    }
 
                     // Update your UI with the retrieved data
                     detailQuestion.setText(theQuestion);
@@ -100,19 +84,15 @@ public class DetailActivity extends AppCompatActivity {
                     opt4.setText(theOption4);
                     answer.setText(theAnswer);
 
-
                     preselectCorrectAnswer(theAnswer);
-
-                    questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + totalQuestions);
-
                 } else {
-                    // Handle the case where the data doesn't exist
+                    Toast.makeText(DetailActivity.this, "Question data not found", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle error
+                Toast.makeText(DetailActivity.this, "Failed to retrieve question data", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -137,7 +117,105 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        // Assuming you have declared your nextButton in your class
+        nextButton = findViewById(R.id.button_next);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if there are questions in the list
+                if (!questionList.isEmpty()) {
+                    // Increment the current question index
+                    currentQuestionIndex++;
+
+                    // Check if there are more questions
+                    if (currentQuestionIndex < questionList.size()) {
+                        // Retrieve data for the next question
+                        QuizData nextQuestion = questionList.get(currentQuestionIndex);
+
+                        // Update your UI with the data for the next question
+                        detailQuestion.setText(nextQuestion.getDataQuestion());
+                        opt1.setText(nextQuestion.getDataOption1());
+                        opt2.setText(nextQuestion.getDataOption2());
+                        opt3.setText(nextQuestion.getDataOption3());
+                        opt4.setText(nextQuestion.getDataOption4());
+                        answer.setText(nextQuestion.getDataAnswer());
+
+                        preselectCorrectAnswer(nextQuestion.getDataAnswer());
+
+                        questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questionList.size());
+                    } else {
+                        // Handle the case where there are no more questions
+                        Toast.makeText(DetailActivity.this, "No more questions", Toast.LENGTH_SHORT).show();
+
+                        // Decrement the current question index to revert the increment
+                        currentQuestionIndex--;
+                    }
+                } else {
+                    // Handle the case where questionList is empty
+                    Toast.makeText(DetailActivity.this, "Question list is empty", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        // Initialize questionList
+        //questionList = new ArrayList<>();
+
+        loadQuestionsFromFirebase();
     }
+
+    private void loadQuestionsFromFirebase() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
+
+        String selectedChapter = getIntent().getStringExtra("selectedChapter");
+        //String questionKey = getIntent().getStringExtra("qid");
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+        chapterReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                questionList = new ArrayList<>();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    QuizData questionData = snapshot.getValue(QuizData.class);
+                    questionList.add(questionData);
+                }
+
+                if (!questionList.isEmpty()) {
+                    // Display the first question
+                    currentQuestionIndex = 0;
+                    retrieveQuestion();
+                }
+                else{
+                    Toast.makeText(DetailActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+    }
+
+    private void retrieveQuestion() {
+        if (currentQuestionIndex < questionList.size()) {
+            QuizData quizData = questionList.get(currentQuestionIndex);
+
+            // Update your UI with the retrieved data
+            detailQuestion.setText(quizData.getDataQuestion());
+            opt1.setText(quizData.getDataOption1());
+            opt2.setText(quizData.getDataOption2());
+            opt3.setText(quizData.getDataOption3());
+            opt4.setText(quizData.getDataOption4());
+            answer.setText(quizData.getDataAnswer());
+
+            preselectCorrectAnswer(quizData.getDataAnswer());
+
+            questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questionList.size());
+        } else {
+            // Handle the case where there are no more questions
+            Toast.makeText(DetailActivity.this, "No more questions", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to delete this question?")
@@ -186,6 +264,7 @@ public class DetailActivity extends AppCompatActivity {
             opt4.setChecked(true);
         }
     }
+
 
 
 }

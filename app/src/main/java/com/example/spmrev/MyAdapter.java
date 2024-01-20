@@ -19,7 +19,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<QuizData> questionList;
     private Context context;
     private String selectedChapter;
-    private int selectedPosition = RecyclerView.NO_POSITION;
 
     public MyAdapter(Context context, List<QuizData> questionList, String selectedChapter) {
         this.context = context;
@@ -57,24 +56,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }
         });
 
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                // Set the selected position
-                selectedPosition = holder.getAdapterPosition();
-                return false;
-            }
-        });
-
     }
 
     @Override
     public int getItemCount() {
         return questionList.size();
-    }
-
-    public int getSelectedPosition() {
-        return selectedPosition;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,7 +74,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             cardView = itemView.findViewById(R.id.cardView);
 
         }
-
     }
 
 }
