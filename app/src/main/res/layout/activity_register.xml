@@ -130,20 +130,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_register" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="198dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="-60dp"
-        android:layout_marginEnd="-350dp"
-        android:rotation="-25"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/reg_id"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_register"
-        app:srcCompat="@drawable/pendulum"
-        android:alpha='0.8'
-    />
-
     <EditText
         android:id="@+id/reg_id"
         android:layout_width="wrap_content"
