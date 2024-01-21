@@ -123,7 +123,7 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Save"
+        android:text="Upload"
         android:textSize="18sp"
         android:layout_marginTop="20dp"
         app:cornerRadius="20dp"/>
