@@ -37,11 +37,11 @@ public class UploadActivity extends AppCompatActivity {
         QuizData quizData = new QuizData();
 
         // Initialize UI elements
-        edQuestion = findViewById(R.id.question);
-        edOp1 = findViewById(R.id.ans_A);
-        edOp2 = findViewById(R.id.ans_B);
-        edOp3 = findViewById(R.id.ans_C);
-        edOp4 = findViewById(R.id.ans_D);
+        edQuestion = findViewById(R.id.Question);
+        edOp1 = findViewById(R.id.AnsA);
+        edOp2 = findViewById(R.id.AnsB);
+        edOp3 = findViewById(R.id.AnsC);
+        edOp4 = findViewById(R.id.AnsD);
         edAnswer = findViewById(R.id.correctAns);
 
         saveButton = findViewById(R.id.saveButton);

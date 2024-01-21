@@ -30,7 +30,7 @@ public class EditQuestionActivity extends AppCompatActivity {
         editOpt2 = findViewById(R.id.editAnsB);
         editOpt3 = findViewById(R.id.editAnsC);
         editOpt4 = findViewById(R.id.editAnsD);
-        editAnswer = findViewById(R.id.editAnswer);
+        editAnswer = findViewById(R.id.correctAns);
 
         saveButton = findViewById(R.id.save_EditQuestion);
         databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");

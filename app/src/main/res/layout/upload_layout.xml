@@ -21,7 +21,7 @@
 
     <!-- Question EditText with Border -->
     <EditText
-        android:id="@+id/editQuestion"
+        android:id="@+id/Question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -42,7 +42,7 @@
 
         <!-- Edit Answer A -->
         <EditText
-            android:id="@+id/editAnsA"
+            android:id="@+id/AnsA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -58,7 +58,7 @@
         android:layout_margin="8dp">
 
         <EditText
-            android:id="@+id/editAnsB"
+            android:id="@+id/AnsB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -75,7 +75,7 @@
         android:layout_margin="8dp">
 
         <EditText
-            android:id="@+id/editAnsC"
+            android:id="@+id/AnsC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -92,7 +92,7 @@
         android:layout_margin="8dp">
 
         <EditText
-            android:id="@+id/editAnsD"
+            android:id="@+id/AnsD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
