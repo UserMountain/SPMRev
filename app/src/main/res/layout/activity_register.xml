@@ -64,58 +64,10 @@
         android:ems="10"
         android:hint="Identification number"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/reg_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_username" />
-
-    <EditText
-        android:id="@+id/reg_password"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/reg_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_id" />
-
-    <EditText
-        android:id="@+id/reg_email"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/reg_phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_password" />
-
-    <EditText
-        android:id="@+id/reg_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="60dp"
-        android:ems="10"
-        android:hint="Phone number"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRegisterConfirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reg_email" />
+        app:layout_constraintTop_toBottomOf="@+id/reg_username" />
 
     <EditText
         android:id="@+id/reg_username"
@@ -132,6 +84,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_register" />
+
+    <EditText
+        android:id="@+id/reg_email"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/reg_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_id" />
+
+    <EditText
+        android:id="@+id/reg_password"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/reg_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_email" />
+
+    <EditText
+        android:id="@+id/reg_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+        android:hint="Phone number"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRegisterConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg_password" />
+
 
     <Button
         android:id="@+id/buttonRegisterConfirm"

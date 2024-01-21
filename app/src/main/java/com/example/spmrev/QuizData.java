@@ -1,6 +1,7 @@
 package com.example.spmrev;
 
 public class QuizData {
+    private int questionNumber;
     private String Qid;
     private String dataQuestion;
     private String dataOption1;
@@ -10,7 +11,7 @@ public class QuizData {
     private String dataAnswer;
     //private String chapter;
 
-    public QuizData(String qid, String dataQuestion, String dataOption1, String dataOption2, String dataOption3, String dataOption4, String dataAnswer) {
+    public QuizData(String qid, String dataQuestion, String dataOption1, String dataOption2, String dataOption3, String dataOption4, String dataAnswer, int questionNumber) {
         this.Qid = qid;
         this.dataQuestion = dataQuestion;
         this.dataOption1 = dataOption1;
@@ -18,6 +19,7 @@ public class QuizData {
         this.dataOption3 = dataOption3;
         this.dataOption4 = dataOption4;
         this.dataAnswer = dataAnswer;
+        this.questionNumber = questionNumber;
     }
 
     public QuizData() {
@@ -76,5 +78,10 @@ public class QuizData {
     }
 
     public void setDataAnswer(String dataAnswer) { this.dataAnswer = dataAnswer;}
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) { this.questionNumber = questionNumber;}
 
 }

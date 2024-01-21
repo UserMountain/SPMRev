@@ -78,24 +78,10 @@
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="20dp"
         android:text="ViewId"
-        app:layout_constraintBottom_toTopOf="@+id/ViewPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewUsername" />
-
-    <TextView
-        android:id="@+id/ViewPassword"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="10dp"
-        android:text="ViewPassword"
         app:layout_constraintBottom_toTopOf="@+id/ViewEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewId" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewUsername" />
 
     <TextView
         android:id="@+id/ViewEmail"
@@ -106,10 +92,24 @@
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="10dp"
         android:text="ViewEmail"
+        app:layout_constraintBottom_toTopOf="@+id/ViewPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ViewId" />
+
+    <TextView
+        android:id="@+id/ViewPassword"
+        android:layout_width="278dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="10dp"
+        android:text="ViewPassword"
         app:layout_constraintBottom_toTopOf="@+id/ViewNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewEmail" />
 
     <TextView
         android:id="@+id/ViewNumber"
@@ -121,7 +121,7 @@
         android:text="ViewNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ViewEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/ViewPassword" />
 
     <Button
         android:id="@+id/button_EditAcc"

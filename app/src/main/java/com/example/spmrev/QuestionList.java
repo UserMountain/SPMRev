@@ -62,7 +62,6 @@ public class QuestionList extends AppCompatActivity {
 
         retrieveQuestions(selectedChapter);
 
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -100,15 +99,23 @@ public class QuestionList extends AppCompatActivity {
 
     public void searchList(String text){
         List<QuizData> searchList = new ArrayList<>();
-        for (QuizData quizData: questionList){
-            if (quizData.getDataQuestion().toLowerCase().contains(text.toLowerCase())){
+        for (int i = 0; i < questionList.size(); i++) {
+            QuizData quizData = questionList.get(i);
+            if (quizData.getDataQuestion().toLowerCase().contains(text.toLowerCase())) {
                 searchList.add(quizData);
             }
         }
 
-        adapter.searchDataList(searchList);
-    }
+        for (int i = 0; i < searchList.size(); i++) {
+            // Find the original position of the question in the questionList
+            int originalPosition = questionList.indexOf(searchList.get(i));
+            // Set the question number based on the original position
+            searchList.get(i).setQuestionNumber(originalPosition + 1);
+        }
 
+        adapter.searchDataList(searchList);
+        adapter.notifyDataSetChanged();
+    }
 
     private void retrieveQuestions(String selectedChapter) {
         // Assume you have a node in the Realtime Database for each chapter
@@ -213,6 +220,5 @@ public class QuestionList extends AppCompatActivity {
             }
         });
     }
-
 
 }

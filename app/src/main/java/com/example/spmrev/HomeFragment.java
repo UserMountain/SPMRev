@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -63,15 +64,15 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Find the TextView you want to make clickable
-        TextView textChapter1 = view.findViewById(R.id.text_chapter1);
-        TextView textChapter2 = view.findViewById(R.id.text_chapter2);
-        TextView textChapter3 = view.findViewById(R.id.text_chapter3);
-        TextView textChapter4 = view.findViewById(R.id.text_chapter4);
-        TextView textChapter5 = view.findViewById(R.id.text_chapter5);
-        TextView textChapter6 = view.findViewById(R.id.text_chapter6);
+        CardView cardViewChapter1 = view.findViewById(R.id.cardViewChp1);
+        CardView cardViewChapter2 = view.findViewById(R.id.cardViewChp2);
+        CardView cardViewChapter3 = view.findViewById(R.id.cardViewChp3);
+        CardView cardViewChapter4 = view.findViewById(R.id.cardViewChp4);
+        CardView cardViewChapter5 = view.findViewById(R.id.cardViewChp5);
+        CardView cardViewChapter6 = view.findViewById(R.id.cardViewChp6);
 
         // Set a click listener to the TextView
-        textChapter1.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuestionList.class);
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        textChapter2.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity with chapter information
@@ -92,7 +93,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        textChapter3.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity with chapter information
@@ -102,7 +103,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        textChapter4.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity with chapter information
@@ -112,7 +113,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        textChapter5.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity with chapter information
@@ -122,7 +123,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        textChapter6.setOnClickListener(new View.OnClickListener() {
+        cardViewChapter6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to UploadActivity with chapter information

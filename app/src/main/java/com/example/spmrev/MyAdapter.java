@@ -38,7 +38,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         QuizData questionData = questionList.get(position);
-        holder.questionTextView.setText("Question " + (position + 1));
+
+        //holder.questionTextView.setText("Question " + (position + 1));
+        int questionNumber = questionData.getQuestionNumber();
+        if (questionNumber > 0) {
+            holder.questionTextView.setText("Question " + questionNumber);
+        } else {
+            holder.questionTextView.setText("Question " + (position + 1));
+        }
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

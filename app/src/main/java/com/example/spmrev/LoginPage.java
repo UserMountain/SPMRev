@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.spmrev.MainActivity;
-import com.example.spmrev.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -39,7 +37,14 @@ public class LoginPage extends AppCompatActivity {
         button_Login.setOnClickListener(v -> {
             String enteredUsername = username.getText().toString();
             String enteredPassword = password.getText().toString();
-            signIn(enteredUsername, enteredPassword);
+
+            if (enteredUsername.isEmpty() || enteredPassword.isEmpty()) {
+                // Show a Toast indicating that both email and password are required
+                Toast.makeText(LoginPage.this, "You not insert your Email or Password!", Toast.LENGTH_SHORT).show();
+            }else {
+                // Proceed with the sign-in attempt
+                signIn(enteredUsername, enteredPassword);
+            }
         });
 
         button_register.setOnClickListener(v -> {
@@ -66,7 +71,7 @@ public class LoginPage extends AppCompatActivity {
                     openSignInSuccessActivity(enteredUsername);
                     // Navigate to the next activity or perform other tasks
                 } else { // If sign in fails, display a message to the user.
-                    Toast.makeText(LoginPage.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginPage.this, "Email or Password Wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
