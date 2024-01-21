@@ -16,7 +16,7 @@
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -60,12 +60,14 @@
         android:layout_width="278dp"
         android:layout_height="40dp"
         android:layout_marginStart="66dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/gradient_bck"
         android:text="ViewUsername"
         app:layout_constraintBottom_toTopOf="@+id/ViewId"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_login" />
 
@@ -74,12 +76,14 @@
         android:layout_width="278dp"
         android:layout_height="40dp"
         android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/gradient_bck"
         android:text="ViewId"
         app:layout_constraintBottom_toTopOf="@+id/ViewEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ViewUsername" />
 
@@ -88,12 +92,14 @@
         android:layout_width="278dp"
         android:layout_height="40dp"
         android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/gradient_bck"
         android:text="ViewEmail"
         app:layout_constraintBottom_toTopOf="@+id/ViewPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ViewId" />
 
@@ -102,9 +108,10 @@
         android:layout_width="278dp"
         android:layout_height="40dp"
         android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/gradient_bck"
         android:text="ViewPassword"
         app:layout_constraintBottom_toTopOf="@+id/ViewNumber"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,10 +123,12 @@
         android:layout_width="278dp"
         android:layout_height="40dp"
         android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="67dp"
+        android:background="@drawable/gradient_bck"
         android:text="ViewNumber"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ViewPassword" />
 
@@ -146,6 +155,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_EditAcc" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="UserName : "
+        app:layout_constraintBottom_toTopOf="@+id/ViewUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Identification Number :"
+        app:layout_constraintBottom_toTopOf="@+id/ViewId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Email :"
+        app:layout_constraintBottom_toTopOf="@+id/ViewEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Password : "
+        app:layout_constraintBottom_toTopOf="@+id/ViewPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Phone Number :"
+        app:layout_constraintBottom_toTopOf="@+id/ViewNumber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
