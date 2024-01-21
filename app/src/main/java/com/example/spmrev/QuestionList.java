@@ -36,7 +36,7 @@ public class QuestionList extends AppCompatActivity {
     private List<QuizData> questionList;
     private String selectedChapter;
     private SearchView searchView;
-    private Button addButton;
+    private Button addButton, takeButton;
     private String selectedQuestionKey;
     DatabaseReference databaseReference;
 
@@ -63,7 +63,6 @@ public class QuestionList extends AppCompatActivity {
         retrieveQuestions(selectedChapter);
 
 
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -83,6 +82,15 @@ public class QuestionList extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to UploadActivity
                 startActivity(new Intent(QuestionList.this, UploadActivity.class).putExtra("selectedChapter", selectedChapter));
+            }
+        });
+
+        takeButton = findViewById(R.id.takeQuiz);
+        takeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to UploadActivity
+                startActivity(new Intent(QuestionList.this, FullQuestionActivity.class).putExtra("selectedChapter", selectedChapter));
             }
         });
 

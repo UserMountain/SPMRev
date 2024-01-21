@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SPMRev"
         tools:targetApi="31">
         <activity
+            android:name=".FullQuestionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity

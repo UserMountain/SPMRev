@@ -29,15 +29,12 @@ import java.util.ArrayList;
 public class DetailActivity extends AppCompatActivity {
 
     TextView detailQuestion;
-    private TextView questionNumberTextView;
     TextView answer;
     RadioGroup radioGroup;
     RadioButton opt1, opt2, opt3, opt4;
     private DatabaseReference databaseReference;
     FloatingActionButton deleteButton, editButton;
-    private List<QuizData> questionList;
-    private Button nextButton;
-    private int currentQuestionIndex;
+
     private String selectedChapter;
     private String questionKey;
 
@@ -50,7 +47,49 @@ public class DetailActivity extends AppCompatActivity {
         questionKey = getIntent().getStringExtra("qid");
         selectedChapter = getIntent().getStringExtra("selectedChapter");
 
-        loadQuestionsFromFirebase(questionKey);
+        detailQuestion = findViewById(R.id.question);
+        opt1 = findViewById(R.id.ansA);
+        opt2 = findViewById(R.id.ansB);
+        opt3 = findViewById(R.id.ansC);
+        opt4 = findViewById(R.id.ansD);
+        answer = findViewById(R.id.answer);
+
+        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
+        DatabaseReference questionReference = chapterReference.child(questionKey);
+        questionReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    // Retrieve data from the snapshot
+                    String theQuestion = dataSnapshot.child("dataQuestion").getValue(String.class);
+                    String theOption1 = dataSnapshot.child("dataOption1").getValue(String.class);
+                    String theOption2 = dataSnapshot.child("dataOption2").getValue(String.class);
+                    String theOption3 = dataSnapshot.child("dataOption3").getValue(String.class);
+                    String theOption4 = dataSnapshot.child("dataOption4").getValue(String.class);
+                    String theAnswer = dataSnapshot.child("dataAnswer").getValue(String.class);
+
+                    // Update UI with the retrieved data
+                    detailQuestion.setText(theQuestion);
+                    opt1.setText(theOption1);
+                    opt2.setText(theOption2);
+                    opt3.setText(theOption3);
+                    opt4.setText(theOption4);
+                    answer.setText(theAnswer);
+
+                    preselectCorrectAnswer(theAnswer);
+
+                } else {
+                    // Handle the case where the data doesn't exist
+                    Toast.makeText(DetailActivity.this, "Question data not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle error
+                Toast.makeText(DetailActivity.this, "Failed to retrieve question data", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         editButton = findViewById(R.id.fabEdit);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -72,85 +111,6 @@ public class DetailActivity extends AppCompatActivity {
                 showDeleteConfirmationDialog();
             }
         });
-
-
-    }
-
-    private void loadQuestionsFromFirebase(String questionKey) {
-        databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
-
-        String selectedChapter = getIntent().getStringExtra("selectedChapter");
-
-        DatabaseReference chapterReference = databaseReference.child(selectedChapter);
-        chapterReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                questionList = new ArrayList<>();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    QuizData questionData = snapshot.getValue(QuizData.class);
-                    questionList.add(questionData);
-                }
-
-                if (!questionList.isEmpty()) {
-                    retrieveQuestion();
-                }
-                else{
-                    Toast.makeText(DetailActivity.this, "No questions found", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle error
-            }
-        });
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void retrieveQuestion() {
-        if (!questionList.isEmpty() && currentQuestionIndex < questionList.size()) {
-            QuizData quizData = questionList.get(currentQuestionIndex);
-
-            questionNumberTextView = findViewById(R.id.questionNumber);
-            detailQuestion = findViewById(R.id.question);
-            radioGroup = findViewById(R.id.radioGroup);
-
-            opt1 = findViewById(R.id.ansA);
-            opt2 = findViewById(R.id.ansB);
-            opt3 = findViewById(R.id.ansC);
-            opt4 = findViewById(R.id.ansD);
-            answer = findViewById(R.id.answer);
-
-            // Update your UI with the retrieved data
-            detailQuestion.setText(quizData.getDataQuestion());
-            opt1.setText(quizData.getDataOption1());
-            opt2.setText(quizData.getDataOption2());
-            opt3.setText(quizData.getDataOption3());
-            opt4.setText(quizData.getDataOption4());
-            answer.setText(quizData.getDataAnswer());
-
-            preselectCorrectAnswer(quizData.getDataAnswer());
-
-            questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questionList.size());
-        } else {
-            // Handle the case where there are no more questions
-            Toast.makeText(DetailActivity.this, "No more questions", Toast.LENGTH_SHORT).show();
-        }
-
-        nextButton = findViewById(R.id.button_next);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextQuestion();
-            }
-        });
-
-    }
-
-    public void nextQuestion(){
-        currentQuestionIndex++;
-        retrieveQuestion();
     }
 
     private void showDeleteConfirmationDialog() {
