@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class QuestionList extends AppCompatActivity {
 
 
         retrieveQuestions(selectedChapter);
+
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -106,8 +108,10 @@ public class QuestionList extends AppCompatActivity {
 
         DatabaseReference chapterReference = databaseReference.child(selectedChapter);
 
+        // Order the questions by their keys
+        Query orderedQuery = chapterReference.orderByKey();
         // Add a ValueEventListener to fetch questions for the selected chapter
-        chapterReference.addValueEventListener(new ValueEventListener() {
+        orderedQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 questionList.clear();
