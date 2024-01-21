@@ -125,11 +125,11 @@
 
     <Button
         android:id="@+id/button_EditAcc"
-        android:layout_width="172dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,11 +137,11 @@
 
     <Button
         android:id="@+id/button_Logout"
-        android:layout_width="172dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
