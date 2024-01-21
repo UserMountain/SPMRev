@@ -162,9 +162,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="UserName : "
+        android:textSize="21dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -173,9 +174,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="Identification Number :"
+        android:textSize="21dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.245"
+        app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -184,9 +186,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="Email :"
+        android:textSize="21dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -195,9 +198,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="Password : "
+        android:textSize="21dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -206,9 +210,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="Phone Number :"
+        android:textSize="21dp"
         app:layout_constraintBottom_toTopOf="@+id/ViewNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintHorizontal_bias="0.251"
         app:layout_constraintStart_toStartOf="parent" />
 
 
