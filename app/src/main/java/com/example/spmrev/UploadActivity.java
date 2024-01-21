@@ -72,6 +72,11 @@ public class UploadActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(UploadActivity.this, "Success", Toast.LENGTH_SHORT).show();
+
+                        // Navigate back to QuestionList activity
+                        Intent intent = new Intent(UploadActivity.this, QuestionList.class);
+                        intent.putExtra("selectedChapter", selectedChapter);
+                        startActivity(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

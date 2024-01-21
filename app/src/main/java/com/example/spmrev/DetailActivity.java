@@ -4,17 +4,20 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +34,8 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
+    SearchView searchView;
+    private MyAdapter myAdapter;
     TextView detailQuestion;
     private TextView questionNumberTextView;
     TextView answer;
@@ -39,8 +44,8 @@ public class DetailActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     FloatingActionButton deleteButton, editButton;
     private List<QuizData> questionList;
-    Button nextButton;
-    int currentQuestionIndex = 0;
+    private Button nextButton;
+    private int currentQuestionIndex = 0;
 
 
     @Override
@@ -157,9 +162,47 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
         // Initialize questionList
-        //questionList = new ArrayList<>();
+        questionList = new ArrayList<>();
 
         loadQuestionsFromFirebase();
+
+        // Check if a specific question index was passed from the previous activity
+        int selectedQuestionIndex = getIntent().getIntExtra("selectedQuestionIndex", -1);
+
+        if (selectedQuestionIndex != -1 && selectedQuestionIndex < questionList.size()) {
+            // Update currentQuestionIndex to the selected question index
+            currentQuestionIndex = selectedQuestionIndex;
+
+            // Display the selected question
+            displayQuestionAtIndex(currentQuestionIndex);
+
+            Log.d("DetailActivity", "Displaying selected question. Index: " + currentQuestionIndex);
+        } else {
+            // If no specific question index is provided, display the first question
+            displayQuestionAtIndex(currentQuestionIndex);
+
+            Log.d("DetailActivity", "Displaying selected question. Index: " + currentQuestionIndex);
+        }
+
+    }
+
+    // Display a question at a specific index in the questionList
+    private void displayQuestionAtIndex(int index) {
+        if (index >= 0 && index < questionList.size()) {
+            QuizData selectedQuestion = questionList.get(index);
+
+            // Update your UI with the data for the selected question
+            detailQuestion.setText(selectedQuestion.getDataQuestion());
+            opt1.setText(selectedQuestion.getDataOption1());
+            opt2.setText(selectedQuestion.getDataOption2());
+            opt3.setText(selectedQuestion.getDataOption3());
+            opt4.setText(selectedQuestion.getDataOption4());
+            answer.setText(selectedQuestion.getDataAnswer());
+
+            preselectCorrectAnswer(selectedQuestion.getDataAnswer());
+
+            questionNumberTextView.setText("Question " + (index + 1) + "/" + questionList.size());
+        }
     }
 
     private void loadQuestionsFromFirebase() {
