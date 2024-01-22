@@ -46,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/choices_layout"
+        android:background="@drawable/gradient_background"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
@@ -84,13 +85,14 @@
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/seeanswer"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
-            android:backgroundTint="@color/white"
+            android:background="@color/white"
+            android:layout_gravity="center"
             android:hint="Right Answer"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -98,19 +100,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_previousQ"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/black"
                 android:gravity="center"
                 android:text="Previous" />
 
