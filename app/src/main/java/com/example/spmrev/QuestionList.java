@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,6 +62,9 @@ public class QuestionList extends AppCompatActivity {
 
 
         retrieveQuestions(selectedChapter);
+
+        TextView chapterTitle = findViewById(R.id.chapterTitle);
+        chapterTitle.setText(selectedChapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

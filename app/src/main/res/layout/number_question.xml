@@ -25,5 +25,7 @@
             android:textStyle="bold"
             android:textColor="?android:attr/textColorPrimary"/>
 
+        <!-- Add other UI elements for additional information if needed -->
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

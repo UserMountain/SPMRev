@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ProfileFragment">
+    tools:context=".Register">
 
 
     <LinearLayout
-        android:id="@+id/linearLayout_login"
+        android:id="@+id/linearLayout_register"
         android:layout_width="418dp"
         android:layout_height="203dp"
         android:foregroundGravity="center_horizontal"
@@ -39,8 +38,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/aclonica"
-                    android:text="Account Information"
-                    android:textSize="16sp" />
+                    android:text="Registeration"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:id="@+id/image_title"
@@ -52,88 +51,178 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
+
     <EditText
-        android:id="@+id/UpdateUsername"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="67dp"
+        android:id="@+id/UpdateNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="101dp"
         android:layout_marginBottom="10dp"
-        android:text="Update your Username"
-        app:layout_constraintBottom_toTopOf="@+id/UpdateId"
+        android:background="@drawable/gradient_bck"
+        android:ems="10"
+        android:hint=" Phone number"
+        android:inputType="phone"
+        android:textColorHint="#321ac9"
+        app:layout_constraintBottom_toTopOf="@+id/save_EditAcc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_login" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdatePassword" />
 
     <EditText
-        android:id="@+id/UpdateId"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="20dp"
-        android:text="Update your Id"
-        app:layout_constraintBottom_toTopOf="@+id/UpdateEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateUsername" />
-
-    <TextView
         android:id="@+id/UpdateEmail"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="67dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="101dp"
         android:layout_marginBottom="10dp"
-        android:text="Update your Email"
+        android:background="@drawable/gradient_bck"
+        android:ems="10"
+        android:hint=" Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#321ac9"
         app:layout_constraintBottom_toTopOf="@+id/UpdatePassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateId" />
 
-    <TextView
+    <EditText
         android:id="@+id/UpdatePassword"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="67dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="101dp"
         android:layout_marginBottom="10dp"
-        android:text="Update your Password"
+        android:background="@drawable/gradient_bck"
+        android:ems="10"
+        android:hint=" Password"
+        android:inputType="textPassword"
+        android:textColorHint="#321ac9"
         app:layout_constraintBottom_toTopOf="@+id/UpdateNumber"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateEmail" />
 
     <EditText
-        android:id="@+id/UpdateNumber"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="67dp"
-        android:text="Update your Number"
+        android:id="@+id/UpdateUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/gradient_bck"
+        android:ems="10"
+        android:hint=" Username"
+        android:inputType="text"
+        android:textColorHint="#321ac9"
+        app:layout_constraintBottom_toTopOf="@+id/UpdateId"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdatePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_register" />
+
+    <EditText
+        android:id="@+id/UpdateId"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/gradient_bck"
+        android:ems="10"
+        android:hint=" Identification number"
+        android:inputType="text"
+        android:textColorHint="#321ac9"
+        app:layout_constraintBottom_toTopOf="@+id/UpdateEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateUsername" />
 
     <Button
         android:id="@+id/save_EditAcc"
-        android:layout_width="172dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="120dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateNumber" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="48dp"
+        android:text="Username:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdateUsername"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="48dp"
+        android:text="ID Number:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdateId"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="48dp"
+        android:text="Email :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdateEmail"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:text="Password :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UpdatePassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UpdateEmail"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="48dp"
+        android:text="Phone No. :"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
