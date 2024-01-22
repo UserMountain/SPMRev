@@ -38,7 +38,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/aclonica"
-                    android:text="Registeration"
+                    android:text="Edit Information"
                     android:textSize="20sp" />
 
                 <ImageView
@@ -73,10 +73,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdatePassword" />
 
-    <EditText
+    <TextView
         android:id="@+id/UpdateEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="209dp"
+        android:layout_height="40dp"
         android:layout_marginStart="115dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="101dp"
@@ -84,6 +84,7 @@
         android:background="@drawable/gradient_bck"
         android:ems="10"
         android:hint=" Email"
+        android:gravity="center_vertical"
         android:inputType="textEmailAddress"
         android:textColorHint="#321ac9"
         app:layout_constraintBottom_toTopOf="@+id/UpdatePassword"
@@ -92,10 +93,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateId" />
 
-    <EditText
+    <TextView
         android:id="@+id/UpdatePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="208dp"
+        android:layout_height="44dp"
         android:layout_marginStart="115dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="101dp"
@@ -104,6 +105,7 @@
         android:ems="10"
         android:hint=" Password"
         android:inputType="textPassword"
+        android:gravity="center_vertical"
         android:textColorHint="#321ac9"
         app:layout_constraintBottom_toTopOf="@+id/UpdateNumber"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,7 +194,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="40dp"
         android:text="Email :"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="21dp"
