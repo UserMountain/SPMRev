@@ -54,7 +54,7 @@
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="213dp"
             android:layout_below="@id/questionText"
             android:orientation="vertical">
 
@@ -88,14 +88,15 @@
         <TextView
             android:id="@+id/seeanswer"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/gradient_background"
+            android:layout_height="59dp"
             android:layout_gravity="center"
-            android:hint="Right Answer"
-            android:textColor="@color/black"
+            android:layout_margin="5dp"
             android:layout_marginStart="20dp"
-            />
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gradient_background"
+            android:hint="Right Answer"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
