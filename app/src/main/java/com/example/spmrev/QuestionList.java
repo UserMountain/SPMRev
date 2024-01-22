@@ -219,7 +219,8 @@ public class QuestionList extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 // Display a success message or navigate back to the previous activity
                 Toast.makeText(QuestionList.this, "Question deleted successfully", Toast.LENGTH_SHORT).show();
-                finish(); // Finish the DetailActivity
+                retrieveQuestions(selectedChapter);
+                //finish(); // Finish the DetailActivity
             }
         });
     }
