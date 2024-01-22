@@ -1,5 +1,7 @@
 package com.example.spmrev;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,15 @@ public class UploadActivity extends AppCompatActivity {
 
         saveButton = findViewById(R.id.saveButton);
 
+        edQuestion.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                pasteText();
+                return true;
+            }
+        });
+
+
         // Set onClickListener for the Save button
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +99,14 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void pasteText() {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+            CharSequence pasteData = clipboardManager.getPrimaryClip().getItemAt(0).getText();
+            edQuestion.getText().insert(edQuestion.getSelectionStart(), pasteData);
+        }
     }
 
 }

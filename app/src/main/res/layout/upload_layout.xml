@@ -27,11 +27,12 @@
         android:textStyle="bold"
         android:hint="This will be the question"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textAlignment="center"
         android:layout_margin="20dp"
         android:background="@drawable/edit_text_border"
-        android:minLines="3" />
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:minLines="5" />
 
     <!-- Choices Layout -->
     <com.google.android.material.textfield.TextInputLayout
