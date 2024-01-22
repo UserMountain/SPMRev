@@ -49,6 +49,8 @@ public class FullQuestionActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Quiz1_Upload");
         questionKey = getIntent().getStringExtra("qid");
         selectedChapter = getIntent().getStringExtra("selectedChapter");
+        TextView chapterTitle = findViewById(R.id.chapterTitleAll);
+        chapterTitle.setText(selectedChapter);
 
         loadQuestionsFromFirebase(questionKey);
 

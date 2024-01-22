@@ -8,7 +8,7 @@
         android:id="@+id/chapterTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4CAF50"
+        android:background="#8FD7C7"
         android:gravity="center"
         android:padding="16dp"
         android:text="Chapter"
