@@ -39,14 +39,14 @@
         android:textSize="24dp"
         android:textAlignment="center"
         android:layout_margin="20dp"
-        android:layout_above="@id/choices_layout"/>
+        android:layout_above="@id/choices_layout"
+        android:background="@drawable/gradient_background"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/choices_layout"
-        android:background="@drawable/gradient_background"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
@@ -89,7 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_margin="5dp"
-            android:background="@color/white"
+            android:background="#F6F6F6"
             android:layout_gravity="center"
             android:hint="Right Answer"
             android:textColor="@color/black" />
